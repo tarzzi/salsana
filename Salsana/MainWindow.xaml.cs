@@ -28,15 +28,29 @@ namespace Salsana
             DB db = new DB();
             string pass = pwbPass.Password;
             correct = db.CheckPass(pass);
-            if (correct = true)
+            if (correct == true)
             {
                 LoginIsTrue();
+                pwbPass.Clear();
             }
         }
         private void LoginIsTrue()
-        { 
-            
+        {
+            Visibility show = Visibility.Visible;
+            List<PassWord> pwlist = new List<PassWord>();
+            dgPassWords.DataContext = pwlist;
+            wpCreator.Visibility = show;
 
+        }
+
+        private void btnCreatePass_Click(object sender, RoutedEventArgs e)
+        {
+            List<PassWord> pwlist = new List<PassWord>();
+            PassWord pw = new PassWord();
+            pw.Pass = txbPass.Text;
+            pw.Service = txbService.Text;
+            pwlist.Add(pw);
+                
         }
     }
 }

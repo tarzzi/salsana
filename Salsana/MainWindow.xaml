@@ -7,13 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="399" Margin="283,10,0,0" VerticalAlignment="Top" Width="499"/>
+        <DataGrid x:Name="dgPassWords" HorizontalAlignment="Left" Height="399" Margin="283,10,0,0" VerticalAlignment="Top" Width="499"/>
         <WrapPanel HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="257">
             <Label FontSize="14">Master Salasana</Label>
-            <PasswordBox x:Name="pwbPass" Width="200" Height="25"> </PasswordBox>
+            <PasswordBox x:Name="pwbPass" Width="200" Height="25"></PasswordBox>
             <Button x:Name="btnLogin" Content="Kirjaudu sisään" Width="200" Height="25" Margin=" 0, 10 " Click="btnLogin_Click"/>
         </WrapPanel>
-        
+        <WrapPanel x:Name="wpCreator" Margin="10,110,525,10" Visibility="Hidden">
+            <Label Height="25" Width="60">Salasana:</Label>
+            <TextBox x:Name="txbPass" Width="180" Margin="0, 10, 0, 10"/>
+            <Label Height="25" Width="60">Palvelu:</Label>
+            <TextBox x:Name="txbService" Width="180" Margin="0, 10, 0, 10"/>
+            <Button x:Name="btnCreatePass" Content="Luo salasana" Width="150" Margin="50,8,0,0" Click="btnCreatePass_Click"/>
+
+        </WrapPanel>
+
 
     </Grid>
 </Window>

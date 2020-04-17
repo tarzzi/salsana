@@ -19,16 +19,35 @@ namespace Salsana
         public void WriteTo(PassWord pass)
         {
             mydocpath = Path.Combine(mydocpath, folder);
-            BinaryWriter write = new BinaryWriter(File.Open(mydocpath, FileMode.OpenOrCreate));
-            string p = pass.Pass;
-            string s = pass.Service;
-            write.Write(p);
-            write.Write(s);
+            StreamWriter write = new StreamWriter(File.Open(mydocpath, FileMode.OpenOrCreate));
+            List<PassWord> passes = new List<PassWord>();
             
         }
         public void ReadFrom()
         {
-            StreamReader read = new StreamReader();
+            List<PassWord> pwlist = new List<PassWord>();
+            PassWord pw = new PassWord();
+            StreamReader read = null;
+            read = new StreamReader(File.Open(mydocpath, FileMode.Open));
+            try
+            {
+                while (!read.EndOfStream)
+                {
+                    pw.Pass = read.ReadLine();
+                    pw.Service = read.ReadLine();
+                    pwlist.Add(pw);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally {
+                read.Close();
+            }
+            
+
+
         }
 
         public bool CheckPass(string pass)
@@ -39,7 +58,7 @@ namespace Salsana
             if (pass == refrence)
             {
                 login = true;
-                MessageBox.Show("Tervetuloa");
+                MessageBox.Show("Tervetuloa");                
                 return login;
             }
             else {
